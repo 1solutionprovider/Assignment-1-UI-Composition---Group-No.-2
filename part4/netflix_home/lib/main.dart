@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widgets/custom_app_bar.dart';
+import 'widgets/movie_slider.dart';
 
 void main() {
   runApp(const NetflixApp());
@@ -10,12 +11,22 @@ class NetflixApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> sampleImages = List.generate(
+      10,
+      (index) => 'https://via.placeholder.com/100x150?text=Movie+${index + 1}',
+    );
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.black,
         appBar: CustomAppBar(),
-        body: const Center(child: Text('Netflix UI Coming Soon', style: TextStyle(color: Colors.white))),
+        body: ListView(
+          children: [
+            MovieSection(title: 'Trending Now', imageUrls: sampleImages),
+            MovieSection(title: 'Popular on Netflix', imageUrls: sampleImages),
+          ],
+        ),
       ),
     );
   }
