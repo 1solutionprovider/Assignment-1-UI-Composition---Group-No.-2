@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
+import 'widgets/custom_app_bar.dart';
 
 void main() {
-  runApp(const NetflixCloneApp());
+  runApp(const NetflixApp());
 }
 
-class NetflixCloneApp extends StatelessWidget {
-  const NetflixCloneApp({super.key});
+class NetflixApp extends StatelessWidget {
+  const NetflixApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Netflix Clone',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Colors.black,
+      home: Scaffold(
+        backgroundColor: Colors.black,
+        appBar: CustomAppBar(),
+        body: const Center(child: Text('Netflix UI Coming Soon', style: TextStyle(color: Colors.white))),
       ),
-      home: const HomeScreen(),
     );
   }
+}
