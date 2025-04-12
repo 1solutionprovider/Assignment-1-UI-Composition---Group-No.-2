@@ -15,29 +15,23 @@ class NetflixApp extends StatelessWidget {
     final Size screenSize = MediaQuery.of(context).size;
 
     List<String> trendingNow = [
-      'https://image.tmdb.org/t/p/w780/9PaYhKtOq4QYzg3Jizz59hz1CZx.jpg',
-      'https://image.tmdb.org/t/p/w780/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg',
-      'https://image.tmdb.org/t/p/w780/sv1xJUazXeYqALzczSZ3O6nkH75.jpg',
-      'https://image.tmdb.org/t/p/w780/jlGmlFOcfo8n5tURmhC7YVd4Iyy.jpg',
-      'https://image.tmdb.org/t/p/w780/1NqwE6LP9IEdOZ57NCT51ftHtWT.jpg',
       'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
       'https://image.tmdb.org/t/p/w500/5ik4ATKmNtmJU6AYD0bLm56BCVM.jpg',
       'https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg',
       'https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg',
-      'https://image.tmdb.org/t/p/w500/qWQSnedj0LCUjWNp9fLcMtfgadp.jpg',
+      'https://image.tmdb.org/t/p/w500/qWQSnedj0LCUjWNp9fLcMtfgadp.jpg'
     ];
 
     List<String> popularOnNetflix = [
+      'https://image.tmdb.org/t/p/w500/1X4h40fcB4WWUmIBK0auT4zRBAV.jpg', 
+      'https://image.tmdb.org/t/p/w500/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg', 
+      'https://image.tmdb.org/t/p/w500/5bFK5d3mVTAvBCXi5NPWH0tYjKl.jpg', 
+      'https://image.tmdb.org/t/p/w500/34m2tygAYBGqA9MXKhRDtzYd4MR.jpg',
       'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
       'https://image.tmdb.org/t/p/w500/5ik4ATKmNtmJU6AYD0bLm56BCVM.jpg',
       'https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg',
       'https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg',
-      'https://image.tmdb.org/t/p/w500/qWQSnedj0LCUjWNp9fLcMtfgadp.jpg',
-      'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
-      'https://image.tmdb.org/t/p/w500/5ik4ATKmNtmJU6AYD0bLm56BCVM.jpg',
-      'https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg',
-      'https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg',
-      'https://image.tmdb.org/t/p/w500/qWQSnedj0LCUjWNp9fLcMtfgadp.jpg',
+      'https://image.tmdb.org/t/p/w500/qWQSnedj0LCUjWNp9fLcMtfgadp.jpg' 
     ];
 
     return MaterialApp(
@@ -57,7 +51,7 @@ class NetflixApp extends StatelessWidget {
                   fit: StackFit.expand,
                   children: [
                     Image.network(
-                      'https://image.tmdb.org/t/p/w1280/1X7vowCZX71GCcYqKPwzlDQKhUJ.jpg',
+                      'https://image.tmdb.org/t/p/w1280/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg', 
                       fit: BoxFit.cover,
                     ),
                     Container(
@@ -80,7 +74,7 @@ class NetflixApp extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Image.network(
-                            'https://www.freepnglogos.com/uploads/netflix-logo-text-emblem-31.png',
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnMOWLGe273PRmzVA_Z6PlE_T7pKhmI10mlA&s',
                             width: 150,
                           ),
                           const SizedBox(height: 10),

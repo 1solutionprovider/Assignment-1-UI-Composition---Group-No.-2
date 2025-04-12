@@ -66,6 +66,25 @@ class MovieSection extends StatelessWidget {
                             ),
                           );
                         },
+                        errorBuilder: (context, error, stackTrace) => Container(
+                          width: imageWidth,
+                          height: imageHeight,
+                          color: Colors.grey[900],
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.error_outline, color: Colors.white),
+                              const SizedBox(height: 5),
+                              Text(
+                                'Image unavailable',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: imageWidth * 0.1,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                     if (progressIndicator)
