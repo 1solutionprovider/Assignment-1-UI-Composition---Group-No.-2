@@ -27,6 +27,19 @@ class NetflixApp extends StatelessWidget {
             MovieSection(title: 'Popular on Netflix', imageUrls: sampleImages),
           ],
         ),
+        bottomNavigationBar: BottomNavigationBar(
+  backgroundColor: Colors.black,
+  selectedItemColor: Colors.red,
+  unselectedItemColor: Colors.grey,
+  type: BottomNavigationBarType.fixed,
+  items: const [
+    BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+    BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+    BottomNavigationBarItem(icon: Icon(Icons.download), label: 'Downloads'),
+    BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'More'),
+  ],
+),
+
       ),
     );
   }
