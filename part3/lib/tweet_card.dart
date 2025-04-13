@@ -1,84 +1,120 @@
 import 'package:flutter/material.dart';
 
 class TweetCard extends StatelessWidget {
+  final String profileImageUrl;
   final String userName;
   final String userHandle;
   final String time;
   final String tweetText;
   final String? tweetImage;
+  final int commentsCount;
+  final int retweetsCount;
+  final int likesCount;
 
   const TweetCard({
     Key? key,
+    required this.profileImageUrl,
     required this.userName,
     required this.userHandle,
     required this.time,
     required this.tweetText,
     this.tweetImage,
+    required this.commentsCount,
+    required this.retweetsCount,
+    required this.likesCount,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(color: Colors.grey.shade300)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header with avatar and user details
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CircleAvatar(
-                backgroundImage: NetworkImage("https://via.placeholder.com/50"),
+                radius: 20,
+                backgroundImage: NetworkImage(profileImageUrl),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        Text(userName,
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                        SizedBox(width: 5),
-                        Text(userHandle, style: TextStyle(color: Colors.grey)),
-                        SizedBox(width: 5),
-                        Text("· $time", style: TextStyle(color: Colors.grey)),
+                        Text(
+                          userName,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          '@$userHandle',
+                          style: TextStyle(color: Colors.grey[600]),
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          '· $time',
+                          style: TextStyle(color: Colors.grey[600]),
+                        ),
                       ],
                     ),
-                    SizedBox(height: 5),
-                    Text(tweetText, style: TextStyle(fontSize: 16)),
+                    const SizedBox(height: 4),
+                    Text(
+                      tweetText,
+                      style: const TextStyle(fontSize: 15),
+                    ),
                   ],
                 ),
               ),
             ],
           ),
-          SizedBox(height: 10),
-          // Optional tweet image
-          tweetImage != null
-              ? Container(
-                  height: 200,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(tweetImage!),
-                      fit: BoxFit.cover,
+          if (tweetImage != null) ...[
+            const SizedBox(height: 8),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network(
+                tweetImage!,
+                width: double.infinity,
+                height: 200,
+                fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Container(
+                    height: 200,
+                    color: Colors.grey[200],
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
                     ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                )
-              : SizedBox.shrink(),
-          SizedBox(height: 10),
-          // Reaction icons row
+                  );
+                },
+                errorBuilder: (context, error, stackTrace) => Container(
+                  height: 200,
+                  color: Colors.grey[200],
+                  child: const Icon(Icons.error),
+                ),
+              ),
+            ),
+          ],
+          const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildIconText(icon: Icons.chat_bubble_outline, text: "24"),
-              _buildIconText(icon: Icons.repeat, text: "12"),
-              _buildIconText(icon: Icons.favorite_border, text: "53"),
-              _buildIconText(icon: Icons.share, text: ""),
+              _buildIconText(Icons.chat_bubble_outline, commentsCount),
+              _buildIconText(Icons.repeat, retweetsCount),
+              _buildIconText(Icons.favorite_border, likesCount),
+              _buildIconText(Icons.share, null),
             ],
           ),
         ],
@@ -86,13 +122,25 @@ class TweetCard extends StatelessWidget {
     );
   }
 
-  Widget _buildIconText({required IconData icon, required String text}) {
+  Widget _buildIconText(IconData icon, int? count) {
     return Row(
       children: [
-        Icon(icon, size: 18, color: Colors.grey),
-        SizedBox(width: 4),
-        text.isNotEmpty ? Text(text, style: TextStyle(color: Colors.grey, fontSize: 14)) : Container(),
+        Icon(icon, size: 20, color: Colors.grey[700]),
+        if (count != null) ...[
+          const SizedBox(width: 4),
+          Text(
+            _formatCount(count),
+            style: TextStyle(color: Colors.grey[700], fontSize: 14),
+          ),
+        ],
       ],
     );
+  }
+
+  String _formatCount(int count) {
+    if (count > 1000) {
+      return '${(count / 1000).toStringAsFixed(1)}K';
+    }
+    return count.toString();
   }
 }
