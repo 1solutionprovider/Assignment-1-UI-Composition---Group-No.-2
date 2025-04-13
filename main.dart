@@ -14,11 +14,32 @@ class MyApp extends StatelessWidget {
         body: const SingleChildScrollView(
           child: Column(
             children: [
-              // Widgets will be inserted here in later commits.
+              children: [
+  ImageSection(
+    image: 'images/lake.jpg.jpg',
+  ),
+  // Other widgets will follow.
+],
+
             ],
           ),
         ),
       ),
+    );
+  }
+}
+class ImageSection extends StatelessWidget {
+  const ImageSection({super.key, required this.image});
+
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      image,
+      width: 600,
+      height: 240,
+      fit: BoxFit.cover,
     );
   }
 }
