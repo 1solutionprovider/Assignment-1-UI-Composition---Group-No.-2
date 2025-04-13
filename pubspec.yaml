@@ -1,0 +1,34 @@
+name: part2
+description: "A new Flutter project."
+publish_to: 'none' # Prevents accidental publishing to pub.dev
+
+# Versioning for the app
+version: 1.0.0+1
+
+# Define the environment and Dart SDK version
+environment:
+  sdk: ^3.7.2
+
+# Project dependencies
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Adds iOS-style icons
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Linting rules for better code practices
+  flutter_lints: ^5.0.0
+
+# Flutter-specific configurations
+flutter:
+  # Enables use of Material Icons
+  uses-material-design: true
+
+  # Register assets (like images) for use in the app
+  assets:
+    - images/lake.jpg.jpg
